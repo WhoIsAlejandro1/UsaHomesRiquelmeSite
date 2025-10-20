@@ -10,6 +10,24 @@ body {
     line-height: 1.6;
     color: #333;
     overflow-x: hidden;
+    background: #f0f0f0;
+}
+
+/* Main site wrapper with borders */
+body {
+    max-width: 1440px;
+    margin: 0 auto;
+    background: #fff;
+    position: relative;
+}
+
+/* Desktop borders - invisible but maintaining structure */
+@media (min-width: 1441px) {
+    body {
+        border-left: 3px solid transparent;
+        border-right: 3px solid transparent;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+    }
 }
 
 .container {
@@ -22,7 +40,10 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    max-width: 1440px;
+    margin: 0 auto;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
     padding: 1.2rem 0;
@@ -87,19 +108,32 @@ body {
 }
 
 /* Hero Section with Background Image Placeholder */
+/* Image is now 1920x1080 landscape format */
 .hero {
     position: relative;
     height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     text-align: left;
     color: #fff;
-    /* Using Profile.png as hero background */
-    background: url('../images/Profile.png') center/cover no-repeat;
+    overflow: hidden;
+    box-sizing: border-box;
+    /* Using Profile.png as hero background - 1920x1080 */
+    background: url('../images/Profile.png') no-repeat;
     background-size: cover;
-    background-position: right -300px;
+    background-position: center center;
     background-attachment: fixed;
+}
+
+/* Ensure all sections respect body width */
+section {
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Dark overlay for better text readability */
@@ -520,23 +554,234 @@ body {
 .service-card:nth-child(5) { animation-delay: 0.5s; }
 .service-card:nth-child(6) { animation-delay: 0.6s; }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-menu {
-        gap: 1rem;
-        flex-wrap: wrap;
+/* ============================================
+   RESPONSIVE DESIGN - Chrome DevTools Dimensions
+   Portrait Profile Picture Optimization
+   ============================================ */
+
+/* Desktop & Large Screens (1920px and above) - Perfect match for 1920x1080 image */
+@media (min-width: 1920px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/* Standard Desktop (1440px - 1919px) */
+@media (min-width: 1441px) and (max-width: 1919px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/* Laptop (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+    }
+}
+
+/* Medium Screens (930px - 1023px) */
+@media (min-width: 930px) and (max-width: 1023px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .hero-content {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
         justify-content: center;
     }
 
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablet/Small Laptop (768px - 929px) */
+@media (min-width: 768px) and (max-width: 929px) {
     .hero {
-        justify-content: center;
-        text-align: center;
-        background-position: top center;
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
     }
 
     .hero-content {
         margin-left: 0;
         margin-right: 0;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.8rem 0;
+    }
+}
+
+/* iPad Pro 12.9" (1024x1366) - Portrait */
+@media (min-width: 1024px) and (max-width: 1366px) and (orientation: portrait) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+    }
+}
+
+/* iPad Pro 11" (834x1194) - Portrait & iPad Air (820x1180) */
+@media (min-width: 820px) and (max-width: 1023px) and (orientation: portrait) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .navbar {
+        padding: 1rem 0;
+    }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center center;
+        background-attachment: scroll;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* iPad Mini (768x1024) - Portrait */
+@media (min-width: 768px) and (max-width: 820px) and (orientation: portrait) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2.3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.8rem 0;
+    }
+
+    .nav-brand {
+        font-size: 1.1rem;
+    }
+}
+
+/* Large Mobile / Small Tablet (600px - 767px) - 600x960 typical */
+@media (min-width: 600px) and (max-width: 767px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: center;
+        text-align: center;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 30px;
     }
 
     .hero-buttons {
@@ -544,7 +789,7 @@ body {
     }
 
     .hero-overlay {
-        background: rgba(0, 0, 0, 0.6);
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
     }
 
     .hero-title {
@@ -567,17 +812,16 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .nav-brand {
-        font-size: 1rem;
+    .nav-menu {
+        display: none;
     }
 
     .navbar {
         padding: 0.8rem 0;
-        background: rgba(255, 255, 255, 0.98);
     }
 
-    .nav-menu {
-        display: none;
+    .nav-brand {
+        font-size: 1rem;
     }
 
     .service-card {
@@ -590,13 +834,405 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+/* Surface Duo (540x720) */
+@media (min-width: 540px) and (max-width: 599px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: center;
+        text-align: center;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 25px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.7rem 0;
+    }
+
+    .nav-brand {
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* iPhone 14 Pro Max (430x932), Pixel 7 Pro (412x915) */
+@media (min-width: 412px) and (max-width: 539px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: center;
+        text-align: center;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 20px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 35%, rgba(0, 0, 0, 0.65) 100%);
+    }
+
+    .hero-title {
+        font-size: 1.7rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.7rem 0;
+    }
+
+    .nav-brand {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.9rem 1.8rem;
+        font-size: 0.95rem;
+    }
+
+    .service-card {
+        padding: 2rem;
+    }
+
+    .contact::before,
+    .contact::after {
+        display: none;
+    }
+}
+
+/* iPhone 14 Pro (393x852), iPhone 13/14 (390x844) */
+@media (min-width: 390px) and (max-width: 411px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: center;
+        text-align: center;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 20px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 35%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
+    .hero-title {
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.65rem 0;
+    }
+
+    .nav-brand {
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .btn {
+        padding: 0.85rem 1.7rem;
+        font-size: 0.9rem;
+    }
+
+    .service-card {
+        padding: 1.8rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* iPhone 12 Mini (375x812), iPhone SE 3rd (375x667) */
+@media (min-width: 375px) and (max-width: 389px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: center;
+        text-align: center;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 20px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 240px;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.25) 35%, rgba(0, 0, 0, 0.7) 100%);
+    }
+
     .hero-title {
         font-size: 1.5rem;
+        margin-bottom: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.6rem 0;
+    }
+
+    .nav-brand {
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
     }
 
     .btn {
         padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .service-icon {
+        font-size: 3rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Galaxy S9+ (360x740), iPhone SE 2020 (375x667) - Small devices */
+@media (max-width: 374px) {
+    .hero {
+        height: 100vh;
+        width: 100vw;
+        background-size: cover;
+        background-position: center top;
+        justify-content: flex-end;
+        text-align: center;
+        padding-bottom: 2rem;
+        background-attachment: scroll;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0 15px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.2) 30%, rgba(0, 0, 0, 0.75) 100%);
+    }
+
+    .hero-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .navbar {
+        padding: 0.5rem 0;
+    }
+
+    .nav-brand {
+        font-size: 0.75rem;
+        letter-spacing: 0.3px;
+    }
+
+    .btn {
+        padding: 0.75rem 1.3rem;
+        font-size: 0.8rem;
+    }
+
+    .service-card {
+        padding: 1.3rem;
+    }
+
+    .service-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .service-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
     }
 }
