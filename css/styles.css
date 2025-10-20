@@ -82,14 +82,13 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
+    justify-content: flex-start;
+    text-align: left;
     color: #fff;
-    /* PLACEHOLDER: Replace the gradient with your image */
-    /* Example: background: url('images/technician-background.jpg') center/cover no-repeat; */
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e8ba3 100%);
+    /* Using Profile.png as hero background */
+    background: url('../images/Profile.png') center/cover no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center right;
     background-attachment: fixed;
 }
 
@@ -100,7 +99,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .hero-content {
@@ -109,6 +108,8 @@ body {
     max-width: 800px;
     padding: 0 20px;
     animation: fadeInUp 1s ease;
+    margin-right: auto;
+    margin-left: 5%;
 }
 
 .hero-title {
@@ -130,7 +131,7 @@ body {
 .hero-buttons {
     display: flex;
     gap: 1rem;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
 }
 
@@ -379,6 +380,25 @@ body {
         gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .hero {
+        justify-content: center;
+        text-align: center;
+        background-position: center center;
+    }
+
+    .hero-content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.6);
     }
 
     .hero-title {
